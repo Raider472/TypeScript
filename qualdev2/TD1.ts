@@ -32,3 +32,47 @@ console.log(yolo.second)
 console.log(yolo.third)
 
 //Ex2
+export interface Istack<T> {
+    push(objet: T): void
+    pop(): void
+    peek(): T
+    isEmpty(): boolean
+    size(): number
+}
+
+export class Stack implements Istack<string> {
+    private _stack: Array<string> = []
+
+    push(objet: string): void {
+        this._stack.push(objet)
+    }
+
+    pop(): void {
+        this._stack.pop()
+    }
+
+    peek(): string {
+        return this._stack[this.size() - 1]
+    }
+
+    isEmpty(): boolean {
+        if (this.size() === 0) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
+    size(): number {
+        return this._stack.length
+    }
+}
+
+let TestInter = new Stack()
+TestInter.push("yepfhifdj")
+console.log(TestInter.peek())
+console.log(TestInter.size())
+console.log(TestInter.isEmpty())
+TestInter.pop()
+console.log(TestInter.isEmpty())
