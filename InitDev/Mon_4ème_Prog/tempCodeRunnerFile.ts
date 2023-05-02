@@ -1,0 +1,1 @@
+readlineSync.question("Choisi n ="))

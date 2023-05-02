@@ -1,0 +1,12 @@
+#historique
+cd /Typescript
+mkdir qualdev
+touch compte_rendu_tp1.txt 
+git status
+#Permet de savoir le status du dépot git, cela Permet de savoir s'il y a des modifications à push ou des fichier à tracker
+git add . ou git add qualdev/compte_rendu_tp1
+#Permet de tracker le fichier compte_rendu_tp1.txt sur le dépot git et ses changements
+git commit -m "Updtae Répertoire de Travail"
+#Permet de nommer le changement pour pouvoir le push plus tard
+git push
+#Permet d'envoyer les modifications sur le serveur (il faut pull avant si on travaille en groupe)

@@ -1,0 +1,7 @@
+git config pull.rebase false #la commande recommander par défaut pour un problème de merge de commit (ceci n'est pas valable s'il y a un conflit de merge !)
+escape :wq (write and quit) #cette commande est utilisé pour quitter la fenétre de resolution de merge une fois le merge completer 
+git tag # Permet de mettre un tag sur un commit, cela peut-^etre utile pour marquer un commit important.
+git push origin <tagname> # Permet de push les tags sur le dépots en ligne, car les tags sont stocker localement par défaut.
+git pull #permet de récuperer le changement des autres utilisateur qui ont push et de mettre à jour son dépot, c'est une étape necessaire avant de push pour éviter les conflits. 
+git show <tagname> #permet de montrer le nom d'un commit gr^ace à un nom de tag.
+git log #cette commande montre la liste de tous les commits qui ont été push sur le dépot et d'avoir des details comme le nom ou l'id de ceux-ci. 
