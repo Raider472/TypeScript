@@ -1,14 +1,10 @@
-class CompteBancaire {
+class CompteBancaire2 {
     private numéro_: number
     private solde_:number
-    private journalEffectue_: Journalisation
-    private journalEchec_: Journalisation
 
     constructor(id: number) {
         this.numéro_ = id
         this.solde_ = 0
-        this.journalEffectue_ = Journalisation.getInstance("effectue")
-        this.journalEchec_ = Journalisation.getInstance("echec")
     }
 
     get solde(): number {
@@ -17,33 +13,33 @@ class CompteBancaire {
 
     débiter(montant: number): void {
         if (montant > this.solde_) {
-            this.journalEchec_.journaliser("Compte " + this.numéro_ + " : Débit de " + montant + "€ impossible")
+            Journalisation2.getInstance("echec").journaliser("Compte " + this.numéro_ + " : Débit de " + montant + "€ impossible")
         }
         else {
             this.solde_ -= montant
-            this.journalEffectue_.journaliser("Compte " + this.numéro_ + " : Débit de " + montant + "€")
+            Journalisation2.getInstance("effectue").journaliser("Compte " + this.numéro_ + " : Débit de " + montant + "€")
         }
     }
 
     créditer(montant: number): void {
         this.solde_ += montant
-        this.journalEffectue_.journaliser("Compte " + this.numéro_ + " : Crédit de " + montant + "€")
+        Journalisation2.getInstance("effectue").journaliser("Compte " + this.numéro_ + " : Crédit de " + montant + "€")
     }
 }
 
-class Journalisation {
-    private static instance_: Map<String, Journalisation>
+class Journalisation2 {
+    private static instance_: Map<String, Journalisation2> = new Map<String, Journalisation2>()
     private operation_: Array<string>
 
     constructor() {
         this.operation_ = []
     }
 
-    public static getInstance(clef: string): Journalisation {
-        if(!Journalisation.instance_.get(clef)) {
-            Journalisation.instance_.set(clef, new Journalisation());
+    public static getInstance(clef: string): Journalisation2 {
+        if(!Journalisation2.instance_.get(clef)) {
+            Journalisation2.instance_.set(clef, new Journalisation2());
         }
-        return Journalisation.instance_.get(clef)!;
+        return Journalisation2.instance_.get(clef)!;
     }
 
     public journaliser(operation: string) {
@@ -58,16 +54,16 @@ class Journalisation {
     }
 }
 
-function main() {
-    const journal = Journalisation.getInstance("effectue")
-    const journal2 = Journalisation.getInstance("echec")
-    let cb1 = new CompteBancaire(123456789)
+function main2() {
+    const journal = Journalisation2.getInstance("effectue")
+    const journal2 = Journalisation2.getInstance("echec")
+    let cb1 = new CompteBancaire2(123456789)
     cb1.créditer(100)
     cb1.débiter(80)
-    let cb2 = new CompteBancaire(987654321)
+    let cb2 = new CompteBancaire2(987654321)
     cb2.débiter(20)
     journal.afficher()
     journal2.afficher()
 }
 
-main()
+main2()
